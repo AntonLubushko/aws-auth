@@ -11,9 +11,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     const token = context.switchToHttp().getRequest().headers.authorization;
     if (err || !user) {
       const message = JSON.stringify(info?.message || err);
-      throw new UnauthorizedException(
-        message + ' ' + ' token length ' + token.length,
-      );
+      throw new UnauthorizedException(message);
     }
 
     return user;
