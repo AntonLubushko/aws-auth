@@ -36,53 +36,71 @@ $ npm run start:dev
 
 ## Usage
 
-The project consists of 4 routes. 3 endpoints serve for auth user in AWS, and 1 endpoint serves for user actions.
+The server provides four routes:
 
-1. User Registration
-   Endpoint: /auth/signup
-   Method: POST
-   Body:
-   {
-   "email": "user@example.com",
-   "password": "StrongPassword123"
-   }
-   Registers a user in AWS Cognito.
+### 1. User Registration
 
-2. User Verification
-   Endpoint: /auth/confirm
-   Method: POST
-   Body:
-   {
-   "email": "user@example.com",
-   "confirmationCode": "123456"
-   }
-   Confirms the user's registration in AWS Cognito with the verification code sent to their email.
+**Endpoint**: `/auth/signup`  
+**Method**: POST  
+**Body**:
 
-3. User Login
-   Endpoint: /auth/signin
-   Method: POST
-   Body:
-   {
-   "email": "user@example.com",
-   "password": "StrongPassword123"
-   }
-   Authenticates the user and returns a JWT token.
+```json
+{
+  "email": "user@example.com",
+  "password": "StrongPassword123"
+}
+```
 
-4. Fetch User Info
-   Endpoint: /user/info
-   Method: GET
-   Headers:
-   Authorization: Bearer <JWT_TOKEN>
-   Retrieves information about the authenticated user.
+Registers a user in AWS Cognito.
+
+### 2. User Verification
+
+**Endpoint**: `/auth/confirm`  
+**Method**: POST  
+**Body**:
+
+```json
+{
+  "email": "user@example.com",
+  "confirmationCode": "123456"
+}
+```
+
+Confirms the user's registration in AWS Cognito with the verification code sent to their email.
+
+### 3. User Login
+
+**Endpoint**: `/auth/signin`  
+**Method**: POST  
+**Body**:
+
+```json
+{
+  "email": "user@example.com",
+  "password": "StrongPassword123"
+}
+```
+
+Authenticates the user and returns a JWT token.
+
+### 4. Fetch User Info
+
+**Endpoint**: `/user/info`  
+**Method**: GET  
+**Headers**:
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+Retrieves information about the authenticated user.
 
 ## Workflow
 
-Register a new user with /auth/signup.
-Confirm the user's registration with /auth/confirm using the confirmation code.
-
-Sign in the user any time with /auth/signin to receive an updated JWT token.
-
-Use the token to access protected routes like /user/info.
+1. **Register** a new user with `/auth/signup`.
+2. **Confirm** the user's registration with `/auth/confirm` using the confirmation code.
+3. **Sign in** the user with `/auth/signin` to receive an updated JWT token.
+4. Use the token to access protected routes like `/user/info`.
 
 ## Run tests
 
